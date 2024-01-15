@@ -21,11 +21,11 @@ int main()
     //     std::cout << x << std::endl;
 
     // std::string arch = getOsInfo();
-    // getOsInfo();
+    getOsInfo();
     // std::cout << arch;
 
-    std::string a = getTimestamp();
-    std::cout << a;
+    // std::string a = getTimestamp();
+    // std::cout << a << std::endl;
 
     return 0;
 }

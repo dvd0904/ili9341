@@ -16,6 +16,8 @@ const auto WM_SYS_HW_DIR {"/sys/class/dmi/id/board_serial"};
 const auto WM_SYS_CPU_DIR {"/proc/cpuinfo"};
 const auto WM_SYS_MEM_DIR {"/proc/meminfo"};
 const auto WM_SYS_UPTIME {"/proc/uptime"};
+// const auto WM_OS_NAME {"/etc/lsb-release"}; // Ubuntu
+const auto WM_OS_NAME {"/etc/os-release"}; // Debian
 const auto UNKNOWN_VALUE { " " };
 
 

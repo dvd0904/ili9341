@@ -137,6 +137,8 @@ std::vector<ll> getMemory()
 
 }
 
+// std::string getOS
+
 
 std::vector<std::string> getOsInfo()
 {
@@ -146,13 +148,28 @@ std::vector<std::string> getOsInfo()
     {
         // ret.push_back(ust.ma)
         // std::cout << uts.sysname  << std::endl;
-        std::cout << uts.machine  << std::endl; // arch
-        std::cout << uts.release  << std::endl; // kernel version
+        std::cout << "Architecture: " << uts.machine  << std::endl; // arch
+        std::cout << "kernel Version: " << uts.release  << std::endl; // kernel version
         // std::cout << uts.version  << std::endl;
         // std::cout << uts.nodename  << std::endl;
 
 
     }
+
+    std::map<std::string, std::string> systemInfo;
+    getSystemInfo(WM_OS_NAME, "=", systemInfo);
+
+    const auto& it { systemInfo.find("PRETTY_NAME") };
+
+    if (it != systemInfo.end())
+    {
+        std::cout << "OS name: " << it->second << std::endl;
+    }
+    // std::string os_name = 
+    // for(auto x : systemInfo)
+    // {
+    //     std::cout << x.first << " ----- " << x.second << std::endl;
+    // }
 
     return ret;
 }
