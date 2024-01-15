@@ -97,10 +97,12 @@ int getCpuMHz()
     return retVal;
 }
 
-void getMemory()
+std::vector<ll> getMemory()
 {
     std::map<std::string, std::string> systemInfo;
     getSystemInfo(WM_SYS_MEM_DIR, ":", systemInfo);
+
+    std::vector<ll> ret;
 
     auto memTotal{ 1ull };
     auto memFree{ 0ull };
@@ -120,11 +122,55 @@ void getMemory()
     }
 
     const auto ramTotal { memTotal == 0 ? 1 : memTotal };
+    auto ramUsage = 100 - (100 * memFree / ramTotal);
 
-    std::cout << "ram_total: " << ramTotal << std::endl;
-    std::cout << "ram_free: " << memFree << std::endl;
-    std::cout << "ram_usage: " << 100 - (100 * memFree / ramTotal) << std::endl;
+    ret.push_back(ramTotal);
+    ret.push_back(memFree);
+    ret.push_back(ramUsage);
 
+
+    std::cout << "ram_total : " << ramTotal << std::endl;
+    std::cout << "ram_free  : " << memFree << std::endl;
+    std::cout << "ram_usage : " << 100 - (100 * memFree / ramTotal) << std::endl;
+
+    return ret;
+
+}
+
+
+std::vector<std::string> getOsInfo()
+{
+    struct utsname uts {};
+    std::vector<std::string> ret;
+    if (uname(&uts) >= 0)
+    {
+        // ret.push_back(ust.ma)
+        // std::cout << uts.sysname  << std::endl;
+        std::cout << uts.machine  << std::endl; // arch
+        std::cout << uts.release  << std::endl; // kernel version
+        // std::cout << uts.version  << std::endl;
+        // std::cout << uts.nodename  << std::endl;
+
+
+    }
+
+    return ret;
+}
+
+std::string getTimestamp()
+{
+    time_t currentTime = time(nullptr);
+
+    struct tm *localTime = localtime(&currentTime);
+
+    int hours = localTime->tm_hour;
+    int minutes = localTime->tm_min;
+    int seconds = localTime->tm_sec;
+    std::string ret = std::to_string(hours) + ":" +
+                             (minutes < 10 ? "0" : "") + std::to_string(minutes) + ":" +
+                             (seconds < 10 ? "0" : "") + std::to_string(seconds);
+
+    return ret;
 }
 
 int getUptime() 

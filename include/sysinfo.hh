@@ -6,7 +6,11 @@
 #include <algorithm>
 #include <memory>
 #include <regex>
+#include <ctime>
 #include <iostream>
+#include <sys/utsname.h>
+
+typedef long long ll;
 
 const auto WM_SYS_HW_DIR {"/sys/class/dmi/id/board_serial"};
 const auto WM_SYS_CPU_DIR {"/proc/cpuinfo"};
@@ -23,6 +27,10 @@ int getCpuCores();
 
 int getCpuMHz();
 
-void getMemory();
+std::vector<ll> getMemory();
+
+std::vector<std::string> getOsInfo();
+
+std::string getTimestamp();
 
 int getUptime();

@@ -1,15 +1,18 @@
 CXX := g++
 CXXFLAGS :=-I./ -I./include/
 
-main: main.cc sysinfo.o
+shared_cc := $(wildcard shared/*.cc)
+shared_o  := $(shared_cc:.cc=.o)
+
+main: ${shared_o} main.cc
 	${CXX} ${CXXFLAGS} $^ -o $@
+
+shared/%.o: shared/%.cc
+	${CXX} ${CXXFLAGS} -fPIC -c $^ -o $@
 
 .PHONY: main
 
-sysinfo.o: sysinfo.cc
-	${CXX} ${CXXFLAGS} -fPIC -c $^ -o $@
-
 clean: 
 	rm -rf main 
-	rm -rf *.o
+	rm -rf ${shared_o}
 
