@@ -190,16 +190,25 @@ std::string getTimestamp()
     return ret;
 }
 
-int getUptime() 
+std::string getUptime() 
 {
     std::ifstream uptimeFile(WM_SYS_UPTIME);
     if (!uptimeFile.is_open()) {
-        return -1;
+        return UNKNOWN_VALUE;
     }
 
     int uptime;
     uptimeFile >> uptime;
 
+    std::cout << uptime;
+
     uptimeFile.close();
-    return uptime;
+    int hours = uptime / 3600;
+    int minutes = (uptime % 3600) / 60;
+    int seconds = uptime % 60;
+    std::string ret = std::to_string(hours) + ":" +
+                             (minutes < 10 ? "0" : "") + std::to_string(minutes) + ":" +
+                             (seconds < 10 ? "0" : "") + std::to_string(seconds);
+
+    return ret;
 }
