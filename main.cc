@@ -9,13 +9,13 @@ int main()
     // int cpu_cores = getCpuCores();
     // int cpu_mhz = getCpuMHz();
     // cpu_name = getCpuName();
-    // std::cout << "CPU Name: " << cpu_name << std::endl;
+    // std::cout << cpu_name << std::endl;
     // std::cout << "CPU Cores: " << cpu_cores << std::endl;
     // std::cout << "CPU MHz: " << cpu_mhz << std::endl;
-    std::string uptime = getUptime();
-    std::cout << "\nUptime: " << uptime << std::endl;
+    // std::string uptime = getUptime();
+    // std::cout << "\nUptime: " << uptime << std::endl;
 
-    // std::vector<ll> mem = getMemory();
+    std::vector<ll> mem = getMemory();
 
     // for (auto x : mem)
     //     std::cout << x << std::endl;

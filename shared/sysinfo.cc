@@ -62,6 +62,8 @@ std::string getCpuName()
         retVal = it->second;
     }
 
+    retVal = "Name: " + retVal;
+
     return retVal;
 
 }
@@ -129,8 +131,8 @@ std::vector<ll> getMemory()
     ret.push_back(ramUsage);
 
 
-    std::cout << "ram_total : " << ramTotal << std::endl;
-    std::cout << "ram_free  : " << memFree << std::endl;
+    std::cout << "ram_total : " << (double)ramTotal / (1024.0 * 1024.0) << std::endl;
+    std::cout << "ram_free  : " << (double)memFree / (1024.0 * 1024.0)  << std::endl;
     std::cout << "ram_usage : " << 100 - (100 * memFree / ramTotal) << std::endl;
 
     return ret;
